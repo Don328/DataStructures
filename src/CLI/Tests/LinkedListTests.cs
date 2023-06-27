@@ -27,28 +27,34 @@ internal static class LinkedListTests
         Previous(linkedList);
         Current(linkedList);
         
-        First(linkedList);
+        PeekFirst(linkedList);
         Current(linkedList);
         
-        Last(linkedList);
+        PeekLast(linkedList);
         Current(linkedList);
         
         Next(linkedList, 3);
         Current(linkedList);
         
-        First(linkedList);
+        PeekFirst(linkedList);
         Current(linkedList);
         
-        Last(linkedList);
+        PeekLast(linkedList);
         Current(linkedList);
         
+        PeekNext(linkedList);
+        Current(linkedList);
+
+        PeekPrevious(linkedList);
+        Current(linkedList);
+
         Reverse(linkedList, 3);
         Current(linkedList);
         
-        Restart(linkedList, 1);
+        Restart(linkedList);
         Current(linkedList);
         
-        ReverseFromEnd(linkedList, 1);
+        RestartReverse(linkedList);
         Current(linkedList);
         
         OverTheBack(linkedList, 3);
@@ -98,74 +104,87 @@ internal static class LinkedListTests
         Console.WriteLine("");
     }
 
-    private static void Next(LnkList<Item> linkedList, int quantity)
+    private static void Next(LnkList<Item> linkedList, int quantity = 1)
     {
         Console.WriteLine($"[ next {quantity} ]");
         for (int i = 0; i < quantity; i++)
         {
-            Console.WriteLine(linkedList.GetNext().Value);
+            Console.WriteLine(linkedList.Next().Value);
         }
 
+        Console.WriteLine("");
+    }
+
+    private static void PeekNext(LnkList<Item> linkedList)
+    {
+        Console.WriteLine("[ peek next ]");
+        Console.WriteLine(linkedList.PeekNext().Value);
         Console.WriteLine("");
     }
 
     private static void Previous(LnkList<Item> linkedList)
     {
         Console.WriteLine("[ previous ] ");
-        Console.WriteLine(linkedList.GetPrevious().Value);
+        Console.WriteLine(linkedList.Previous().Value);
         Console.WriteLine("");
     }
-
-    private static void First(LnkList<Item> linkedList)
+    private static void PeekPrevious(LnkList<Item> linkedList)
     {
-        Console.WriteLine("[ first ]");
-        Console.WriteLine(linkedList.First().Value);
+        Console.WriteLine("[ peek previous ]");
+        Console.WriteLine(linkedList.PeekPrevious().Value);
         Console.WriteLine("");
     }
 
-    private static void Last(LnkList<Item> linkedList)
+    private static void PeekFirst(LnkList<Item> linkedList)
     {
-        Console.WriteLine("[ last ]");
-        Console.WriteLine(linkedList.Last().Value);
+        Console.WriteLine("[ peek first ]");
+        Console.WriteLine(linkedList.PeekFirst().Value);
         Console.WriteLine("");
     }
 
-    private static void Reverse(LnkList<Item> linkedList, int quantity)
+    private static void PeekLast(LnkList<Item> linkedList)
+    {
+        Console.WriteLine("[ peek last ]");
+        Console.WriteLine(linkedList.PeekLast().Value);
+        Console.WriteLine("");
+    }
+
+    private static void Reverse(LnkList<Item> linkedList, int quantity = 1)
     {
         Console.WriteLine($"[ reverse({quantity}) ]");
-        for (int i = 0; i < quantity; i++) Console.WriteLine(linkedList.GetPrevious().Value);
+        for (int i = 0; i < quantity; i++) Console.WriteLine(linkedList.Previous().Value);
         Console.WriteLine("");
     }
 
-    private static void Restart(LnkList<Item> linkedList, int quantity)
+    private static void Restart(LnkList<Item> linkedList, int quantity = 1)
     {
         Console.WriteLine($"[ Restart({quantity}) ]");
         Console.WriteLine(linkedList.Start().Value);
-        for (int i = 0; i < quantity-1; i++) Console.WriteLine(linkedList.GetNext().Value);
+        for (int i = 0; i < quantity-1; i++) Console.WriteLine(linkedList.Next().Value);
         Console.WriteLine();
     }
 
-    private static void ReverseFromEnd(LnkList<Item> linkedList, int quantity)
+    private static void RestartReverse(LnkList<Item> linkedList, int quantity = 1)
     {
         Console.WriteLine($"[ Restart_Reverse({quantity}) ]");
         Console.WriteLine(linkedList.Start_Reverse().Value);
-        for (int i = 0; i < quantity-1; i++) Console.WriteLine(linkedList.GetPrevious().Value);
+        for (int i = 0; i < quantity-1; i++) Console.WriteLine(linkedList.Previous().Value);
         Console.WriteLine();
     }
 
-    private static void OverTheBack(LnkList<Item> linkedList, int quantity)
+    private static void OverTheBack(LnkList<Item> linkedList, int quantity = 1)
     {
-        Console.WriteLine("[ Over the back ]");
+        Console.WriteLine($"[ Over the back ({quantity})]");
         Console.WriteLine(linkedList.Start_Reverse().Value);
-        for (int i = 0; i < quantity; i++) Console.WriteLine(linkedList.GetNext().Value);
+        for (int i = 0; i < quantity-1; i++) Console.WriteLine(linkedList.Next().Value);
         Console.WriteLine("");
     }
 
-    private static void OverTheBackReverse(LnkList<Item> linkedList, int quantity)
+    private static void OverTheBackReverse(LnkList<Item> linkedList, int quantity = 1)
     {
-        Console.WriteLine("[ Over the back reverse]");
+        Console.WriteLine($"[ Over the back reverse ({quantity})]");
         Console.WriteLine(linkedList.Start().Value);
-        for (int i = 0; i < quantity; i++) Console.WriteLine(linkedList.GetPrevious().Value);
+        for (int i = 0; i < quantity-1; i++) Console.WriteLine(linkedList.Previous().Value);
         Console.WriteLine("");
     }
 }

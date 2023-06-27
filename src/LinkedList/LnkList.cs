@@ -40,32 +40,48 @@ public class LnkList<T> where T : class
         return GetItemUnderCursor().GetValue();
     }
 
-    public T First()
+    public T PeekFirst()
     {
         var item = _items[_head] ?? default!;
         return item.GetValue();
     }
 
-    public T Last()
+    public T PeekLast()
     {
         var item = _items[_tail] ?? default!;
         return item.GetValue();
     }
 
-    public T GetNext()
+    public T Next()
     {
-        var currentItem = GetItemUnderCursor();
-        var next = currentItem.Next();
-
-        _cursor = next ?? _head;
-        //_cursor = GetItemUnderCursor().Next()?? _head;
+        _cursor = GetItemUnderCursor().Next() ?? _head;
         return Get();
     }
 
-    public T GetPrevious()
+    public T PeekNext()
+    {
+        var index = GetItemUnderCursor().Next()?? _head;
+        var next = _items[index];
+        
+        if (next == null) return default!;
+        return next.GetValue();
+    }
+
+    public T Previous()
     {
         _cursor = GetItemUnderCursor().Previous() ?? _tail;
         return Get();
+    }
+
+    public T PeekPrevious()
+    {
+        var index = GetItemUnderCursor()
+            .Previous() ?? _head;
+        
+        var previous = _items[index];
+
+        if (previous == null) return default!;
+        return previous.GetValue();
     }
 
     public void Add(T item)
