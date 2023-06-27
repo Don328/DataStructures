@@ -5,9 +5,8 @@
 ## Linear Data Structures
 
 - [ ] Stack
-- [ ] Linked List
+- [x] Linked List
 - [ ] Queue
-- [ ] Double Linked List
 
 ---
 
