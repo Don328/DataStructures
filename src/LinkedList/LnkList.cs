@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LinkedList;
+﻿namespace Lnk_Lst;
 public class LnkList<T> where T : class
 {
-    private LinkedListItem<T>?[] _items = default!;
+    private LnkListItem<T>?[] _items = default!;
     private int _cursor = 0;
     private int _head = 0;
     private int _tail = 0;
@@ -27,11 +21,35 @@ public class LnkList<T> where T : class
         }
     }
 
+    public T Start()
+    {
+        _cursor = _head;
+        return Get();
+    }
+
+    public T Start_Reverse()
+    {
+        _cursor = _tail;
+        return Get();
+    }
+
     public T Get()
     {
         if (_cursor == -1) return default!;
 
         return GetItemUnderCursor().GetValue();
+    }
+
+    public T First()
+    {
+        var item = _items[_head] ?? default!;
+        return item.GetValue();
+    }
+
+    public T Last()
+    {
+        var item = _items[_tail] ?? default!;
+        return item.GetValue();
     }
 
     public T GetNext()
@@ -46,18 +64,18 @@ public class LnkList<T> where T : class
 
     public T GetPrevious()
     {
-        _cursor = GetItemUnderCursor().Previous()?? _tail;
+        _cursor = GetItemUnderCursor().Previous() ?? _tail;
         return Get();
     }
 
     public void Add(T item)
     {
-        LinkedListItem<T>?[] items;
+        LnkListItem<T>?[] items;
 
-        if (_items == null) items = new LinkedListItem<T>?[1];
+        if (_items == null) items = new LnkListItem<T>?[1];
         else
         {
-            items = new LinkedListItem<T>?[_items.Length + 1];
+            items = new LnkListItem<T>?[_items.Length + 1];
             for (int i = 0; i < _items.Length; i++)
             {
                 items[i] = _items[i];
@@ -66,24 +84,26 @@ public class LnkList<T> where T : class
 
         _items = items;
         var index = _items.Length - 1;
-        _items[index] = new LinkedListItem<T>(
+        _items[index] = new LnkListItem<T>(
             value: item, index: index, previous: _tail, next: _head);
         var previous = _items[_tail];
-        if (previous != null) previous.UpdateNextIndex(index);
+        previous?.UpdateNextIndex(index);
+        var next = _items[_head];
+        next?.UpdatePreviousIndex(index);
 
         _tail = index;
     }
 
     public void Insert(T value, int priorToIdx)
     {
-        var previous = _items[priorToIdx]?? _items[_tail];
-        var next = _items[previous.Next() ?? 0]?? _items[_head];
+        var previous = _items[priorToIdx] ?? _items[_tail];
+        var next = _items[previous.Next() ?? 0] ?? _items[_head];
         var index = _items.Length;
 
-        var item = new LinkedListItem<T>(
-            value: value, 
-            index: index, 
-            previous: previous.Index, 
+        var item = new LnkListItem<T>(
+            value: value,
+            index: index,
+            previous: previous.Index,
             next: next.Index);
 
         _items[index] = item;
@@ -97,8 +117,8 @@ public class LnkList<T> where T : class
         var item = _items[_cursor];
         if (item == null) return;
 
-        LinkedListItem<T>? previous;
-        LinkedListItem<T>? next;
+        LnkListItem<T>? previous;
+        LnkListItem<T>? next;
 
         try { previous = _items[item.Previous() ?? -1]; }
         catch { previous = null; }
@@ -118,7 +138,7 @@ public class LnkList<T> where T : class
             {
                 previous.UpdateNextIndex(null);
             }
-            
+
             _cursor++;
         }
         else
@@ -144,8 +164,8 @@ public class LnkList<T> where T : class
         return this;
     }
 
-    private LinkedListItem<T> GetItemUnderCursor()
+    private LnkListItem<T> GetItemUnderCursor()
     {
-        return _items[_cursor]?? default!;
+        return _items[_cursor] ?? default!;
     }
 }

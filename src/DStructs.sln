@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TODO.md = TODO.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LnkList", "LinkedList\LnkList.csproj", "{EEFCB2B2-BA7F-411D-869C-65CF43DEEB4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lnk_Lst", "LinkedList\Lnk_Lst.csproj", "{EEFCB2B2-BA7F-411D-869C-65CF43DEEB4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
