@@ -34,11 +34,15 @@ public class Que<T> where T : class
 
     public T Peek()
     {
+        if (_head > _tail) return default!;
+        
         return _items[_head];
     }
 
     public T Pop()
     {
+        if (_head > _tail) return default!;
+        
         var value = _items[_head];
         _head++;
         return value;
