@@ -12,7 +12,7 @@ public class Que<T> where T : class
     }
     public Que(T item) 
     {
-        _items = new T[1];
+        _items = new T[1] { item };
         _cursor = 0;
         _tail = 0;
     }
