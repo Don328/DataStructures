@@ -53,10 +53,6 @@ internal static class StackTests
         return items;
     }
 
-    private static void TestAdd()
-    {
-    }
-
     private static void TestCreateEmpty()
     {
         var stack = new Stk<Item>();
@@ -66,31 +62,6 @@ internal static class StackTests
         Console.WriteLine();        
         Console.WriteLine(stack.Peek().Value);
         Console.WriteLine();        
-    }
-
-    private static void TestPopLastAndContinue()
-    {
-        var stack = new Stk<Item>(GetList());
-
-        Console.WriteLine("--- Test pop last and continue ---");
-        Console.WriteLine();
-        Console.WriteLine("[pop]  " + stack.Pop().Value);
-        Console.WriteLine("[pop]  " + stack.Pop().Value);
-        Console.WriteLine("[pop]  " + stack.Pop().Value);
-        Console.WriteLine("[pop]  " + stack.Pop().Value);
-        Console.WriteLine("[pop]  " + stack.Pop().Value);
-        Console.WriteLine("[pop]  " + stack.Pop().Value);
-        Console.WriteLine("[pop]  " + stack.Pop().Value);
-        Console.WriteLine("[pop]  " + stack.Pop().Value);
-        Console.WriteLine("[pop]  " + stack.Pop().Value);
-        Console.WriteLine("[pop]  " + stack.Pop().Value);
-        Console.WriteLine("[peek] " + stack.Peek().Value);
-        Console.WriteLine("[pop]  " + stack.Pop().Value);
-        Console.WriteLine("[peek] " + stack.Peek().Value);
-        Console.WriteLine("[peek] " + stack.Peek().Value);
-        Console.WriteLine("[pop]  " + stack.Pop().Value);
-        Console.WriteLine("[pop]  " + stack.Pop().Value);
-        Console.WriteLine();
     }
 
     private static void TestBackAndForth()
