@@ -1,4 +1,5 @@
 ﻿using DStructs;
 using DStructs.Tests;
 
-LinkedListTests.Test();
+// LinkedListTests.Test();
+StackTests.Test();

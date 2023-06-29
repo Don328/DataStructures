@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LinkedList\Lnk_Lst.csproj" />
+    <ProjectReference Include="..\Que\Que.csproj" />
     <ProjectReference Include="..\Stk\Stk.csproj" />
   </ItemGroup>
 
